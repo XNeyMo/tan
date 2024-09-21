@@ -1,0 +1,21 @@
+---
+- name: Install Nginx
+  apt:
+    name: nginx
+    update_cache: yes
+    state: latest
+
+- name: Ensure Nginx service is running
+  systemd:
+    name: nginx
+    state: started
+
+- name: Create directory for Nginx configuration
+  file:
+    path: /etc/nginx/sites-available
+    state: directory
+
+- name: Create directory for Nginx enabled sites
+  file:
+    path: /etc/nginx/sites-enabled
+    state: directory

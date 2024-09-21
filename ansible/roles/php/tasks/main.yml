@@ -1,0 +1,24 @@
+---
+- name: Install PHP and required extensions
+  apt:
+    name: "{{ item }}"
+    state: present
+    update_cache: yes
+  loop:
+    - php
+    - php-fpm
+    - php-mysql
+    - php-xml
+    - php-mbstring
+
+- name: Ensure PHP-FPM service is running
+  systemd:
+    name: php7.4-fpm
+    state: started
+    enabled: yes
+
+- name: Set up PHP info page
+  template:
+    src: "test.php"
+    dest: "/var/www/html/test.php"
+    mode: '0644'

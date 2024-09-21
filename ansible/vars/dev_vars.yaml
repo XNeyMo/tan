@@ -1,0 +1,3 @@
+---
+http_host: "dev.example.com"
+http_conf: "dev.example.com.conf"
